@@ -8,63 +8,114 @@
 import os
 import json
 
-filepath = "users.json"  # file path
+filepath = "users.json"
 
-def reg():
-    # taking input for registration
+# Register function
+def register():
     name = input("Enter name: ")
     password = input("Enter password: ")
-
-    # check if file exists and is non-empty
+    
+    # Check if file exists and is non-empty
     if os.path.exists(filepath) and os.stat(filepath).st_size > 0:
         with open(filepath, 'r') as file:
             users = json.load(file)
     else:
-        users = []
-
-    # check if the username already exists
+        users = []  # Initialize as an empty list if file is empty or does not exist
+    
+    # Check if user already exists
     for user in users:
         if user["name"] == name:
-            print("A user with the same name already exists")
-            return  # return to the main loop
+            print("User with this name already exists.")
+            return
 
-    # append the new user to the list
-    users.append({"name": name, "password": password})
+    # Append new user to the list
+    users.append({"name": name, "password": password, "balance": 0})
+    
+    # Write the updated list of users back to the file
+    with open(filepath, 'w') as file:
+        json.dump(users, file, indent=4)
 
-    # write the updated list of users back to the file
-    with open(filepath, "w") as file:
-        json.dump(users, file, indent=4)  # correctly serialize the JSON data
-             
+    print("Registration successful!")
+
+# Login function
 def login():
-    # taking input for login
     name = input("Enter name: ")
     password = input("Enter password: ")
 
-    # check if file exists and is non-empty
     if os.path.exists(filepath) and os.stat(filepath).st_size > 0:
         with open(filepath, 'r') as file:
             users = json.load(file)
+
+        # Find user matching name and password
+        for user in users:
+            if user["name"] == name and user["password"] == password:
+                print("Login successful!")
+                return user  # Return the user object if credentials match
+        
+    print("Invalid name or password.")
+    return None
+
+# Check balance function
+def check_balance(user):
+    print(f"Your balance is {user['balance']}")
+
+# Add balance function
+def add_balance(user):
+    add = int(input("Enter balance you want to add: "))   
+    user['balance'] += add
+    print(f"Your balance = {user['balance']}")
+
+# Withdraw balance function
+def withdraw(user):
+    withdraw_amount = int(input("Enter amount you want to withdraw: ")) 
+    if user['balance'] >= withdraw_amount:
+        user['balance'] -= withdraw_amount
+        print(f"Your current balance = {user['balance']}")
     else:
-        print("No users registered yet!")
-        return  # No users to log in to
+        print("Insufficient balance!")
 
-    # check if the username and password match any registered user
-    for user in users:
-        if user["name"] == name and user["password"] == password:
-            print(f"Welcome {name}!")
-            
-
+# Main loop
 while True:
-    print("Choose an option:")
-    print("1::Register")
-    print("2::Login")
-    
-    choice = int(input("1/2: "))
-    if choice == 1:
-        reg()
-    elif choice == 2:
-        login()
-    else:
-        print("Please enter a valid choice")
-        continue  # prompt the user again
+    print("1. Register")
+    print("2. Login")
+    choice = input("Enter 1 or 2: ")
 
+    if choice == "1":
+        register()
+    elif choice == "2":
+        user = login()
+
+        if user:
+            print("1. Check Balance")
+            print("2. Add Balance")
+            print("3. Withdraw Balance")
+            print("4. Logout")
+            
+            option = input("Enter 1 to 4: ")
+            if option == "1":
+                check_balance(user)
+            elif option == "2":
+                add_balance(user)
+            elif option == "3":
+                withdraw(user)
+            elif option == "4":
+                print("Thanks for using NABIL BANK!!!!")
+                break
+            else:
+                print("Enter a valid choice!")
+            
+            # After each operation, save the updated user back into the file
+            with open(filepath, 'r') as file:
+                users = json.load(file)
+
+            for idx, u in enumerate(users):
+                if u["name"] == user["name"]:
+                    users[idx] = user
+
+            with open(filepath, 'w') as file:
+                json.dump(users, file, indent=4)
+
+        else:
+            print("Failed to login. Please try again.")
+    else:
+        print("Enter a valid choice!")

@@ -1,14 +1,12 @@
 [
     {
         "name": "sujal",
-        "password": "112222"
+        "password": "sujal123",
+        "balance": 55000
     },
     {
-        "name": "paty",
-        "password": "ret"
-    },
-    {
-        "name": "katy",
-        "password": "parry"
+        "name": "majhi",
+        "password": "majhi123",
+        "balance": 80000
     }
 ]
