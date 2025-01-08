@@ -66,7 +66,7 @@ while True:
             
     else:
         print("Enter a valid choice!!!!!!!!!!!!!!!!")       
-    quit=input("If you want the bill y/n").lower()
+    quit=input("If you want the bill y/n:").lower()
     if quit=="y":
         False
         break

@@ -28,12 +28,12 @@
 # for fruit in fruits:
 #     print(fruit)
 
-#dictionary with key and values
-user={"name":"sujal","age":20,"faculty":["science","EEC","Be cmp"]}
-for value in user.values():
-    print(value)
-for key in user.keys():
-    print(key)   
-print(user["name"])
-print(user["faculty"][1])
+# #dictionary with key and values
+# user={"name":"sujal","age":20,"faculty":["science","EEC","Be cmp"]}
+# for value in user.values():
+#     print(value)
+# for key in user.keys():
+#     print(key)   
+# print(user["name"])
+# print(user["faculty"][1])
     
