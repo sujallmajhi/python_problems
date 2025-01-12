@@ -120,25 +120,25 @@
 
 #duck typing: another way to achieve polymorphism besides inheritance object must have the minimum necessary attribute methods ,"if it looks like duck and quacks like a duck,it must be duck"
 
-class Animal:
-    alive = True
+# class Animal:
+#     alive = True
 
-class Dog(Animal):
-    def speak(self):
-        print("WOOF!")
+# class Dog(Animal):
+#     def speak(self):
+#         print("WOOF!")
 
-class Cat(Animal):
-    def speak(self):
-        print("MEOW!")
+# class Cat(Animal):
+#     def speak(self):
+#         print("MEOW!")
 
-class Car:
-    alive = True
+# class Car:
+#     alive = True
 
-    def speak(self):
-        print("HONK!")
+#     def speak(self):
+#         print("HONK!")
 
-animals = [Dog(), Cat(), Car()]
+# animals = [Dog(), Cat(), Car()]
 
-for animal in animals:
-    animal.speak()
-    print(animal.alive)
+# for animal in animals:
+#     animal.speak()
+#     print(animal.alive)
