@@ -172,3 +172,63 @@
 # s1=shape()
 # s1.display1() #cannot access
 # s1.display()
+
+#abstract class: A class that cannot be instantiated on its own:meant to be subclassed.They contain abstract method, which are declared but we have no implementation.
+#abstracct class benefits
+#1. prevent instantination of the class itself
+#2. Requires children to use inherited abstract methods
+ 
+# from abc import ABC, abstractmethod
+
+# class Vehicle(ABC):
+
+#     @abstractmethod
+#     def go(self):
+#         pass
+
+#     @abstractmethod
+#     def stop(self):
+#         pass
+
+# class Car(Vehicle):
+
+#     def go(self):
+#         print("You drive the car")
+
+#     def stop(self):
+#         print("You stop the car")
+
+# class Motorcycle(Vehicle):
+
+#     def go(self):
+#         print("You ride the motorcycle")
+
+#     def stop(self):
+#         print("You stop the motorcycle")
+
+# class Boat(Vehicle):
+
+#     def go(self):
+#         print("You sail the boat")
+
+#     def stop(self):
+#         print("You anchor the boat")
+
+# car = Car()
+# motorcycle = Motorcycle()
+# boat = Boat()
+
+from abc import ABC,abstractmethod
+
+class Animal(ABC):
+    @abstractmethod
+    def sound(self):
+        print("animal eats")
+class goat(Animal):
+    def sound(self):
+        return "goat eats grass"
+# a1=Animal() #we cannot instance abstract class
+#we need a subclass to instance abstract method and the name of the method must be same
+# Let’s say you're creating a system for different types of Vehicles (e.g., Car, Bike, Truck). All vehicles have common operations like start() and stop(), but each vehicle may have a different implementation for these actions. An abstract class can define these common methods while allowing subclasses to implement the details.
+g1=goat()
+print(g1.sound())
