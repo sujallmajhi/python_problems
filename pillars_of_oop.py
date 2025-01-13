@@ -134,6 +134,7 @@
 # class Car:
 #     alive = True
 
+
 #     def speak(self):
 #         print("HONK!")
 
@@ -142,3 +143,32 @@
 # for animal in animals:
 #     animal.speak()
 #     print(animal.alive)
+
+#process of wrapping someinformation in a single entity
+#-(protectec attribute)
+#--(private attribute)
+
+# class Employee:
+#     def getdata(self):
+#         self.name=input("Enter your name::") 
+#         self.__salary=input("Enter your salary:")
+#     def display(self):
+#         print(f"your name is:{self.name}")
+#         print(f"your salary is:{self.salary}")
+#     def revised(self):
+#         print(f"your salary is {self.__salary}") #can be accessed using self.__privetae variable
+# e1=Employee()
+# e1.getdata()
+# e1.revised()
+
+# class shape:
+#     _length=10
+#     _breadth=20
+#     def display1(self):
+#         print(f"{self.length}")
+#     def display(self):
+#         print(f"{self._length} and {self._breadth}")
+
+# s1=shape()
+# s1.display1() #cannot access
+# s1.display()
